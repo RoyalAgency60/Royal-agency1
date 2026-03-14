@@ -3,276 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Agency | Professional Female Hosting</title>
+    <title>Royal Agency | Elite Management</title>
     <style>
         :root {
             --royal-blue: #002366;
             --gold: #D4AF37;
             --white: #ffffff;
-            --light-gray: #f4f4f4;
-            --dark: #1a1a1a;
+            --dark: #121212;
         }
 
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            background-color: var(--light-gray);
-            color: var(--dark);
+            background-color: #f8f9fa;
         }
 
-        /* Navigation */
+        /* Nav */
         nav {
             background: var(--royal-blue);
-            padding: 15px 20px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 4px solid var(--gold);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 3px solid var(--gold);
         }
 
-        .logo {
-            color: var(--gold);
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .logo { color: var(--gold); font-size: 22px; font-weight: bold; text-transform: uppercase; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            background: linear-gradient(rgba(0, 35, 102, 0.85), rgba(0, 35, 102, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
+            background: var(--royal-blue);
             color: white;
-            padding: 100px 20px;
+            padding: 60px 5%;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-            color: var(--gold);
-            text-transform: uppercase;
+        .banner-container {
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            border: 4px solid var(--gold);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .banner-container img { width: 100%; display: block; }
 
         .cta-btn {
             background: var(--gold);
             color: var(--royal-blue);
-            padding: 18px 40px;
+            padding: 20px 45px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 20px;
+            font-weight: 800;
+            font-size: 22px;
             border-radius: 50px;
-            transition: 0.3s;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .cta-btn:hover {
-            background: white;
-            transform: translateY(-3px);
-        }
-
-        /* Benefits Grid */
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        h2.section-title {
-            text-align: center;
-            color: var(--royal-blue);
-            font-size: 32px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        h2.section-title::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--gold);
             transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: var(--royal-blue);
-            margin-bottom: 15px;
-        }
-
-        /* Legal Sections */
-        .legal-section {
+        /* Popup Styles */
+        #ctaPopup {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 320px;
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--gold);
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            z-index: 2000;
+            animation: slideIn 0.5s ease-out;
         }
 
-        .legal-content {
-            height: 250px;
-            overflow-y: auto;
-            border: 1px solid #eee;
-            padding: 20px;
-            background: #fafafa;
-            font-size: 14px;
-            color: #555;
+        @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #999;
         }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
+        /* Sections */
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+        .card { background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        .footer-info p {
-            margin: 5px 0;
-            opacity: 0.8;
-        }
-
-        .footer-links {
-            margin: 20px 0;
-        }
-
-        .footer-links a {
-            color: var(--gold);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 18px; }
-        }
+        footer { background: var(--dark); color: white; padding: 40px; text-align: center; }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">👑 Royal Agency</div>
-        <div class="nav-links">
-            <a href="#benefits">Benefits</a>
-            <a href="#terms">Terms</a>
-            <a href="#privacy">Privacy</a>
-        </div>
+        <div class="nav-links"><a href="#terms">Terms</a><a href="#privacy">Privacy</a></div>
     </nav>
 
     <section class="hero">
-        <h1>Join Royal Agency</h1>
-        <p>Start your professional streaming career today. Earn <strong>$20 - $50+ daily</strong> from the comfort of your home.</p>
-        <a href="https://wa.me/917428132358" class="cta-btn">APPLY NOW ON WHATSAPP</a>
+        <div class="banner-container">
+            <img src="banner.jpg" alt="Royal Agency Banner">
+        </div>
+        <h1>Elite Talent Management</h1>
+        <p>Join the #1 Agency in India. Managed by Vikas Kannojia.</p>
+        <a href="https://wa.me/917428132358" class="cta-btn">APPLY ON WHATSAPP</a>
     </section>
 
-    <div class="container" id="benefits">
-        <h2 class="section-title">Why Choose Us?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🏠 Flexible Work</h3>
-                <p>100% Work from home. You are the boss of your own schedule and timings.</p>
-            </div>
-            <div class="card">
-                <h3>💰 Fast Payouts</h3>
-                <p>Direct self-withdrawal to your Bank, USDT, or PayPal. No delays.</p>
-            </div>
-            <div class="card">
-                <h3>🎓 Expert Training</h3>
-                <p>New to streaming? We provide 1-on-1 coaching to help you reach your goals.</p>
-            </div>
-            <div class="card">
-                <h3>📞 24/7 Support</h3>
-                <p>Our dedicated management team is always here to assist our hosts.</p>
-            </div>
+    <div class="container">
+        <div class="card" id="terms">
+            <h2>Terms & Conditions</h2>
+            <p>18+ only. No joining fees. Daily payouts via Bank/USDT.</p>
+        </div>
+        <div class="card" id="privacy">
+            <h2>Privacy Policy</h2>
+            <p>Your data is secure and managed by Vikas Kannojia. We never share host info.</p>
         </div>
     </div>
 
-    <div class="container" id="legal">
-        <div class="legal-section" id="terms">
-            <h2 style="color: var(--royal-blue); margin-top: 0;">Terms & Conditions</h2>
-            <div class="legal-content">
-                <p><strong>1. Eligibility:</strong> All hosts must be 18 years of age or older. You must provide valid identification for platform verification.</p>
-                <p><strong>2. No Joining Fees:</strong> Royal Agency is a recruitment partner. We 100% guarantee that there are NO registration fees or hidden charges to join.</p>
-                <p><strong>3. Host Conduct:</strong> Hosts must maintain professional behavior. Violation of platform rules (nudity, hate speech) will lead to immediate termination.</p>
-                <p><strong>4. Earnings:</strong> Earnings are based on performance and gifts. Royal Agency facilitates self-withdrawal through official platform channels.</p>
-                <p><strong>5. Management:</strong> Royal Agency, owned by Vikas Kannojia, acts as your official talent management partner.</p>
-            </div>
-        </div>
-
-        <div class="legal-section" id="privacy">
-            <h2 style="color: var(--royal-blue); margin-top: 0;">Privacy Policy</h2>
-            <div class="legal-content">
-                <p><strong>Data Collection:</strong> We collect name, age, and contact details solely for platform registration.</p>
-                <p><strong>Usage:</strong> Your data is used for recruitment and training within Royal Agency. We do not sell your personal details.</p>
-                <p><strong>Security:</strong> All information is managed securely under the supervision of Vikas Kannojia.</p>
-                <p><strong>Removal:</strong> You can request to have your data deleted from our records by contacting us at +91 74281 32358.</p>
-            </div>
-        </div>
+    <div id="ctaPopup">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+        <h3 style="color: var(--royal-blue); margin-top: 0;">Ready to Earn? 💰</h3>
+        <p style="font-size: 14px; color: #555;">Don't miss out! We are currently hiring 10 new hosts for this week.</p>
+        <a href="https://wa.me/917428132358" style="background: #25D366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: block; text-align: center; font-weight: bold;">Message on WhatsApp</a>
     </div>
 
     <footer>
-        <div class="footer-info">
-            <p><strong>ROYAL AGENCY</strong></p>
-            <p>Owned & Managed by Vikas Kannojia</p>
-            <p>Location: Faridabad, Haryana | Global Support</p>
-            <p>WhatsApp: +91 74281 32358</p>
-        </div>
-        <div class="footer-links">
-            <a href="#terms">Terms & Conditions</a> | 
-            <a href="#privacy">Privacy Policy</a>
-        </div>
-        <p style="font-size: 12px; margin-top: 20px; opacity: 0.6;">&copy; 2026 Royal Agency. All Rights Reserved.</p>
+        <p>&copy; 2026 Royal Agency | WhatsApp: +91 74281 32358</p>
     </footer>
+
+    <script>
+        // Show popup after 10 seconds (10000 milliseconds)
+        setTimeout(function() {
+            document.getElementById('ctaPopup').style.display = 'block';
+        }, 10000);
+
+        function closePopup() {
+            document.getElementById('ctaPopup').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
